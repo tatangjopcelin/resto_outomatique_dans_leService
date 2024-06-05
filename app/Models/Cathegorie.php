@@ -13,7 +13,7 @@ class Cathegorie extends Model
     ];
     use HasFactory;
     // cathegorie hasMany produit
-     public function produit():hasMany{
+     public function produits():hasMany{
         return $this->hasMany(Produit::class);
      }
 }
