@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ProduitController extends Controller
 {
-    public function get_all_cathegory_product(Request $request)
+    public function get_all_cathegory_products(Request $request)
     {
         $response = Cathegorie::where('nom_cathegorie', $request->cathegorie)
             ->produit();
