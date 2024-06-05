@@ -1,4 +1,4 @@
-<p align="center"><img src="./pdv.jpg"></p>
+<p align="center"><img src="./public/assets/images/pdv.jpg"></p>
 
 
 
