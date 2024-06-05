@@ -10,11 +10,12 @@ use Illuminate\Database\Eloquent\Relations\hasMany;
 
 class Table extends Model
 {
-    protected $fillable =[
-"numero_table"
+    protected $fillable = [
+        "numero_table"
     ];
     use HasFactory;
-    public function commande():hasMany{
+    public function commande(): hasMany
+    {
         return $this->hasMany(Commande::class);
     }
 }
