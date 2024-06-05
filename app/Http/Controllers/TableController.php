@@ -15,7 +15,9 @@ class TableController extends Controller
      */
     public function index()
     {
-        //
+        $table=Table::orderBy('id','desc')->get();
+        return response(["response"=>$table],200);
+
     }
 
     /**
@@ -36,7 +38,11 @@ class TableController extends Controller
      */
     public function store(StoreTableRequest $request)
     {
-        //
+        $table = $request->validated();
+        $storeTable=Table::create($table);
+       // $storeTable=Table::create(StoreTableRequest);
+        return response(["response"=>$storeTable],201);
+
     }
 
     /**
@@ -45,9 +51,12 @@ class TableController extends Controller
      * @param  \App\Models\Table  $table
      * @return \Illuminate\Http\Response
      */
-    public function show(Table $table)
+    public function show($id)
     {
-        //
+        $table=Table::find($id);
+        if($table)
+        return response(["response"=>$table]);
+
     }
 
     /**
@@ -68,9 +77,13 @@ class TableController extends Controller
      * @param  \App\Models\Table  $table
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTableRequest $request, Table $table)
+    public function update(UpdateTableRequest $request, $id)
     {
-        //
+        $data = $request->validated();
+        $table=Table::find($id);
+        $val=$table->update($data);
+        return response(["response"=>$val]);
+
     }
 
     /**
@@ -79,8 +92,12 @@ class TableController extends Controller
      * @param  \App\Models\Table  $table
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Table $table)
+    public function destroy(Table $id)
     {
-        //
+        $table=Table::find($id);
+        if ($table && $table->delete()) {
+            return response(["response"=>"delete"]);
+        }
+        return response(["response"=>false]);
     }
 }
