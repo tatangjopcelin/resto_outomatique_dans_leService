@@ -22,7 +22,7 @@ class CreateProduitsTable extends Migration
             $table->foreignId('id_cathegories')
                 ->references('id')
                 ->on('cathegories')
-                ->onDelete('cascades');
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
