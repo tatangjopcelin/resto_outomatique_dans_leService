@@ -16,7 +16,7 @@ class ProduitCommande extends Model
         "produit_id",
     ];
     use HasFactory;
-    public function produit():belongsTo{
+    public function produits():belongsTo{
         return $this->belongsTo(Produit::class);
     }
 }
