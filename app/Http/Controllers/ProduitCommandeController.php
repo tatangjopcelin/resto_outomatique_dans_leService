@@ -15,7 +15,9 @@ class ProduitCommandeController extends Controller
      */
     public function index()
     {
-        //
+        $produitCommande = ProduitCommande::orderBy("id","desc")->get();
+        return response(["reponse"=>$produitCommande], 200);
+
     }
 
     /**
@@ -36,7 +38,9 @@ class ProduitCommandeController extends Controller
      */
     public function store(StoreProduitCommandeRequest $request)
     {
-        //
+        $data = $request->validated();
+        $StoreProduitCommande=ProduitCommande::create($data);
+        return response(["reponse"=>$StoreProduitCommande],201);
     }
 
     /**
@@ -45,9 +49,11 @@ class ProduitCommandeController extends Controller
      * @param  \App\Models\ProduitCommande  $produitCommande
      * @return \Illuminate\Http\Response
      */
-    public function show(ProduitCommande $produitCommande)
+    public function show($id)
     {
-        //
+        $produitCommande = ProduitCommande::find($id);
+        if($produitCommande)
+        return response(["reponse"=>$produitCommande],200);
     }
 
     /**
@@ -68,9 +74,13 @@ class ProduitCommandeController extends Controller
      * @param  \App\Models\ProduitCommande  $produitCommande
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProduitCommandeRequest $request, ProduitCommande $produitCommande)
+    public function update(UpdateProduitCommandeRequest $request, $id)
     {
-        //
+        $data = $request->validated();
+        $produitCommande=ProduitCommande::find($id);
+        $val=$produitCommande->update($data);
+        return response(["response"=>$val]);
+
     }
 
     /**
@@ -79,8 +89,12 @@ class ProduitCommandeController extends Controller
      * @param  \App\Models\ProduitCommande  $produitCommande
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProduitCommande $produitCommande)
+    public function destroy($id)
     {
-        //
+        $produitCommande=ProduitCommande::find($id);
+        if ($produitCommande && $produitCommande->delete()) {
+            return response(["response"=>"delete"]);
+        }
+        return response(["response"=>false]);
     }
 }
