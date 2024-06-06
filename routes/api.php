@@ -24,6 +24,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::prefix('produits')
+    ->group(function () {
+        Route::controller(ProduitController::class)->group(function () {
+            Route::get('/', 'get_all_cathegory_products');
+            Route::post('/', 'save_product_by_cathegory');
+        });
+    });
+
 Route::prefix('table')->group(function () {
     Route::controller(TableController::class)->group(function () {
         Route::get('/',"index");
@@ -54,5 +62,4 @@ Route::prefix('produitCommande')->group(function () {
     });
 });
 
-Route::get('/produits', [ProduitController::class, 'get_all_cathegory_products']);
 
