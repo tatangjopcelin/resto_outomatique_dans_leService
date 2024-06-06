@@ -16,7 +16,18 @@ class CathegorieController extends Controller
     public function index()
     {
         $cathegorie=Cathegorie::orderBy("id","desc")->get();
-        return response(["reponse"=> $cathegorie],200);
+        $message="";
+        if(is_null($cathegorie)){
+            $message.= "aucune cathegorie trouve";
+        return response(["message"=> $message],200);
+        }else{
+            $message.= "en total ".$cathegorie->count();
+
+            return response([
+                "reponse"=> $cathegorie,
+                "message"=> $message,
+            ],200);
+        }
 
     }
 
