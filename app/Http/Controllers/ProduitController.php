@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Http\Requests\SavePoductRequest;
 use App\Http\Resources\ProductResources;
 use App\Models\Cathegorie;
-=======
-use App\Models\Cathegorie;
-use App\Http\Requests\SavePoductRequest;
->>>>>>> origin/brole
 use App\Models\Produit;
 use Illuminate\Http\Request;
 
@@ -76,8 +71,4 @@ class ProduitController extends Controller
                 'produit' => new ProductResources($produit_enregistre),
             ], 201);
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/brole
 }

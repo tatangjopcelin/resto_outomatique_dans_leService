@@ -13,6 +13,8 @@ class Commande extends Model
 
     protected $fillables = [
         'total',
+        'tables_id',
+        'produit_commandes_id',
     ];
 
     public function produit_commandes(): HasMany

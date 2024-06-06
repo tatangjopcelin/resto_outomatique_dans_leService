@@ -19,9 +19,9 @@ class CreateCommandesTable extends Migration
             $table->foreignId('tables_id')
                 ->references('id')
                 ->on('tables');
-            $table->foreignId('produits_id')
+            $table->foreignId('produit_commandes_id')
                 ->references('id')
-                ->on('produits');
+                ->on('produit_commandes');
             $table->timestamps();
         });
     }

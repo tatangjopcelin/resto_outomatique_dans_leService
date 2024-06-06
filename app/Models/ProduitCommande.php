@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\belongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 class ProduitCommande extends Model
@@ -16,8 +16,11 @@ class ProduitCommande extends Model
         "produit_id",
     ];
     use HasFactory;
-    public function produits():belongsTo{
-        return $this->belongsTo(Produit::class);
+
+    public function produit(): HasOne
+    {
+        return $this->hasOne(Produit::class);
     }
+
 }
 
