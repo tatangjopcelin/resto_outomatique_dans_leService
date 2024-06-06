@@ -1,6 +1,8 @@
 <?php
 
+
 use App\Http\Controllers\CathegorieController;
+use App\Http\Controllers\ProduitController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TableController;
@@ -51,3 +53,6 @@ Route::prefix('produitCommande')->group(function () {
         Route::delete('/{id}',"destroy");
     });
 });
+
+Route::get('/produits', [ProduitController::class, 'get_all_cathegory_products']);
+
