@@ -16,7 +16,18 @@ class ProduitCommandeController extends Controller
     public function index()
     {
         $produitCommande = ProduitCommande::orderBy("id","desc")->get();
-        return response(["reponse"=>$produitCommande], 200);
+        $message="";
+        if(is_null($produitCommande)){
+            $message.= "aucune produitCommander trouve";
+        return response(["message"=> $message],200);
+        }else{
+            $message.= "en total ".$produitCommande->count();
+
+            return response([
+                "reponse"=> $produitCommande,
+                "message"=> $message,
+            ],200);
+        }
 
     }
 
