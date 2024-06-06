@@ -24,5 +24,9 @@ class Produit extends Model
         return $this->belongsTo(Cathegorie::class);
     }
 
+    public function produitCommande():belongsTo{
+        return $this->belongsTo(ProduitCommande::class);
+    }
+
 }
 
