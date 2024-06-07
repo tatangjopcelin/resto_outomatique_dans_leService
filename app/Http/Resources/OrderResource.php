@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Table;
+use App\Models\ProduitCommande;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrderResource extends JsonResource
@@ -14,6 +16,14 @@ class OrderResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $response = [
+            "id" => $this->id,
+            "total" => $this->total,
+            "table" => Table::find($this->tables_id)->first()->numero_table,
+            "produit_commandes" => ProduitCommande::find($this->produit_commandes_id)->get(),
+            "heure_commande" => $this->created_at->format('H:m'),
+        ];
+
+        return $response;
     }
 }

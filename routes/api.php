@@ -47,9 +47,12 @@ Route::prefix('produitCommande')->group(function () {
     });
 });
 
-Route::prefix('commande')->group(function () {
+Route::prefix('commandes')->group(function () {
 
     Route::controller(CommandeController::class)->group(function () {
-        Route::get('/', 'CommandeController@get_orders');
+        Route::get('/', 'get_orders');
+    });
+    Route::controller(CommandeController::class)->group(function () {
+        Route::post('/', 'save_order');
     });
 });
