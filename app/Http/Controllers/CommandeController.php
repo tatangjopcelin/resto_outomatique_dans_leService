@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveOrderRequest;
+use App\Http\Resources\OrderResource;
 use App\Models\Commande;
 use App\Models\ProduitCommande;
+use App\Models\Table;
 
 class CommandeController extends Controller
 {
@@ -12,13 +14,13 @@ class CommandeController extends Controller
     {
 
         return response()
-            ->json(Commande::all(), 200);
+            ->json(OrderResource::collection(Commande::all()), 200);
     }
     public function save_order(SaveOrderRequest $saveOrderRequest)
     {
 
-        $pc = ProduitCommande::find($saveOrderRequest->id_produit_commande)
-            ->first();
+        $pc = ProduitCommande::find($saveOrderRequest->id_produit_commande);
+        $table = Table::where('numero_table', $saveOrderRequest->table);
 
         if (is_null($pc)) {
             return response()
@@ -27,11 +29,28 @@ class CommandeController extends Controller
                     'message' => 'Vous voulez passer une commande avec aucun produit sélectioné.',
                 ], 400);
         }
-     $pc = $pc->get();
+        if (is_null($table)) {
+            return response()
+                ->json([
+                    'status' => StatusMessage::STATUS_MESSAGE_BAD_REQUEST,
+                    'message' => 'Vous voulez passer une commande sur une table non enregistrée.',
+                ], 400);
+        }
+
+
+        $pc = $pc->get();
+        $table = $table->get();
+
         $commande = Commande::create([
             'total' => $pc->sum('prix_total'),
-            'tables_id' => $saveOrderRequest->table,
+            'tables_id' => $table[0]['id'],
             'produit_commandes_id' => $pc[0]['id'],
         ]);
+
+        return response()
+            ->json([
+                'status' => StatusMessage::STATUS_MESSAGE_CREATED,
+                'commande' => $commande,
+            ], 201);
     }
 }
