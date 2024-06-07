@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommandeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\ProduitController;
@@ -43,5 +44,12 @@ Route::prefix('produitCommande')->group(function () {
         Route::post('/', "store");
         Route::put('/{id}', "update");
         Route::delete('/{id}', "destroy");
+    });
+});
+
+Route::prefix('commande')->group(function () {
+
+    Route::controller(CommandeController::class)->group(function () {
+        Route::get('/', 'CommandeController@get_orders');
     });
 });

@@ -15,18 +15,18 @@ class ProduitCommandeController extends Controller
      */
     public function index()
     {
-        $produitCommande = ProduitCommande::orderBy("id","desc")->get();
-        $message="";
-        if(is_null($produitCommande)){
-            $message.= "aucune produitCommander trouve";
-        return response(["message"=> $message],200);
-        }else{
-            $message.= "en total ".$produitCommande->count();
+        $produitCommande = ProduitCommande::orderBy("id", "desc")->get();
+        $message = "";
+        if (is_null($produitCommande)) {
+            $message .= "aucune produitCommander trouve";
+            return response(["message" => $message], 200);
+        } else {
+            $message .= "en total " . $produitCommande->count();
 
             return response([
-                "reponse"=> $produitCommande,
-                "message"=> $message,
-            ],200);
+                "reponse" => $produitCommande,
+                "message" => $message,
+            ], 200);
         }
 
     }
@@ -50,8 +50,8 @@ class ProduitCommandeController extends Controller
     public function store(StoreProduitCommandeRequest $request)
     {
         $data = $request->validated();
-        $StoreProduitCommande=ProduitCommande::create($data);
-        return response(["reponse"=>$StoreProduitCommande],201);
+        $StoreProduitCommande = ProduitCommande::create($data);
+        return response(["reponse" => $StoreProduitCommande], 201);
     }
 
     /**
@@ -63,8 +63,8 @@ class ProduitCommandeController extends Controller
     public function show($id)
     {
         $produitCommande = ProduitCommande::find($id);
-        if($produitCommande)
-        return response(["reponse"=>$produitCommande],200);
+        if ($produitCommande)
+            return response(["reponse" => $produitCommande], 200);
     }
 
     /**
@@ -88,9 +88,9 @@ class ProduitCommandeController extends Controller
     public function update(UpdateProduitCommandeRequest $request, $id)
     {
         $data = $request->validated();
-        $produitCommande=ProduitCommande::find($id);
-        $val=$produitCommande->update($data);
-        return response(["response"=>$val]);
+        $produitCommande = ProduitCommande::find($id);
+        $val = $produitCommande->update($data);
+        return response(["response" => $val]);
 
     }
 
@@ -102,10 +102,10 @@ class ProduitCommandeController extends Controller
      */
     public function destroy($id)
     {
-        $produitCommande=ProduitCommande::find($id);
+        $produitCommande = ProduitCommande::find($id);
         if ($produitCommande && $produitCommande->delete()) {
-            return response(["response"=>"delete"]);
+            return response(["response" => "delete"]);
         }
-        return response(["response"=>false]);
+        return response(["response" => false]);
     }
 }

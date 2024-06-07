@@ -24,11 +24,10 @@ class StoreProduitCommandeRequest extends FormRequest
     public function rules()
     {
         return [
-            "quantite_produit"=>["required","integer","max:128"],
-            "prix_unitaire"=>["required","integer","max:255"],
-            "prix_total"=>["required","integer","max:255"],
-            "produit_id"=>["required","integer","min:1","max:200"],
-
+            "quantite_produit" => ["required"],
+            "prix_unitaire" => ["required"],
+            "prix_total" => ["required"],
+            "produit_id" => ["required"],
         ];
     }
 }

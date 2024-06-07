@@ -55,7 +55,7 @@ class ProduitController extends Controller
                     'message' => 'Cette cathegorie de produit n\'existe pas',
                 ], 400);
         }
-
+        $c = $c->get();
         $produit_enregistre = Produit::create([
             'nom_du_produit' => $request->nom_du_produit,
             'prix_du_produit' => $request->prix_du_produit,
