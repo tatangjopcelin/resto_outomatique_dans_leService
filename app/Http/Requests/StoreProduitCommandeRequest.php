@@ -26,8 +26,8 @@ class StoreProduitCommandeRequest extends FormRequest
         return [
             "quantite_produit" => ["required"],
             "prix_unitaire" => ["required"],
-            "prix_total" => ["required"],
             "produit_id" => ["required"],
+
         ];
     }
 }

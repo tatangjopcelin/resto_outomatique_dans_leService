@@ -50,8 +50,12 @@ class ProduitCommandeController extends Controller
     public function store(StoreProduitCommandeRequest $request)
     {
         $data = $request->validated();
-        $StoreProduitCommande = ProduitCommande::create($data);
-        return response(["reponse" => $StoreProduitCommande], 201);
+
+        $data['prix_total'] = $request->prix_unitaire * $request->quantite_produit;
+
+        $storeProduitCommande = ProduitCommande::create($data);
+        return response(["reponse" => $storeProduitCommande], 201);
+
     }
 
     /**
@@ -108,4 +112,6 @@ class ProduitCommandeController extends Controller
         }
         return response(["response" => false]);
     }
+
+
 }

@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\CommandeController;
@@ -55,4 +56,8 @@ Route::prefix('commandes')->group(function () {
     Route::controller(CommandeController::class)->group(function () {
         Route::post('/', 'save_order');
     });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> origin/main

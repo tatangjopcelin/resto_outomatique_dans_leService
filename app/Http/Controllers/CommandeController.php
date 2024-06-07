@@ -38,7 +38,7 @@ class CommandeController extends Controller
         }
 
 
-        $pc = $pc->get();
+        $pc = $pc->first();
         $table = $table->get();
 
         $commande = Commande::create([
