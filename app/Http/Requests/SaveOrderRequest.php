@@ -24,7 +24,7 @@ class SaveOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'produit_commande_id' => 'required',
+            'produit_commandes_id' => 'required',
             'table' => 'required',
         ];
     }

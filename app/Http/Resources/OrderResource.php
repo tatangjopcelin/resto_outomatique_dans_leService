@@ -20,7 +20,7 @@ class OrderResource extends JsonResource
             "id" => $this->id,
             "total" => $this->total,
             "table" => Table::find($this->tables_id)->first()->numero_table,
-            "produit_commandes" => ProduitCommande::find($this->produit_commandes_id)->get(),
+            "produit_commandes" => ProduitCommande::find($this->produit_commandes_id)->first(),
             "heure_commande" => $this->created_at->format('H:m'),
         ];
 
