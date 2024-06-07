@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\ProduitCommandeController;
+use App\Http\Controllers\CommandeController;
 
 
 /*
@@ -62,4 +63,11 @@ Route::prefix('produitCommande')->group(function () {
     });
 });
 
+
+Route::prefix('commande')->group(function () {
+    Route::controller(CommandeController::class)->group(function () {
+        Route::post('/',"save_order");
+
+    });
+});
 

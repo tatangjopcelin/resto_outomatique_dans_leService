@@ -27,7 +27,7 @@ class CommandeController extends Controller
                     'message' => 'Vous voulez passer une commande avec aucun produit sélectioné.',
                 ], 400);
         }
-
+     $pc = $pc->get();
         $commande = Commande::create([
             'total' => $pc->sum('prix_total'),
             'tables_id' => $saveOrderRequest->table,

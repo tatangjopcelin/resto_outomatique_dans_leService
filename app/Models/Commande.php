@@ -11,7 +11,7 @@ class Commande extends Model
 {
     use HasFactory;
 
-    protected $fillables = [
+    protected $fillable = [
         'total',
         'tables_id',
         'produit_commandes_id',

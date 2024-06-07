@@ -16,7 +16,19 @@ class TableController extends Controller
     public function index()
     {
         $table=Table::orderBy('id','desc')->get();
-        return response(["response"=>$table],200);
+        $message="";
+        if(is_null($table)){
+            $message.= "aucune table trouve";
+        return response(["message"=> $message],200);
+        }else{
+            $message.= "en total ".$table->count();
+
+            return response([
+                "reponse"=> $table,
+                "message"=> $message,
+            ],200);
+        }
+
 
     }
 
