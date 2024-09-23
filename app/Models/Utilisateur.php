@@ -17,6 +17,6 @@ class Utilisateur extends Authenticatable
     ];
 
     protected $hidden = [
-        'mot_de_pass', // Masquer le mot de passe lors de la sérialisation
+        'mot_de_pass', // Masquer le mot de passe 
     ];
 }
